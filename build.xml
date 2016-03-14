@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file. Any modifications will be overwritten. 
+	To include a user specific buildfile here, simply create one in the same 
+	directory with the processing instruction <?eclipse.ant.import?> as the first 
+	entry and export the buildfile again. -->
+<project basedir="." default="build" name="library">
+	<property environment="env" />
+	<property name="ECLIPSE_HOME" value="D:/Eclipse-jee-indigo-SR2-win32/eclipse" />
+	<property name="Tomcat7.0.location" value="../../" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+
+	<!-- src and dist 
+	<property name="src.dir" location="WEB-INF/src" />-->
+	<property name="src.dir" location="src/mylibrary" />
+	<property name="dist.dir" location="WEB-INF/classes" />
+
+	<path id="Tomcat7.0.classpath">
+		<pathelement location="${Tomcat7.0.location}/webapps/library/bin" />
+		<pathelement location="${Tomcat7.0.location}/bin/bootstrap.jar" />
+		<pathelement location="${Tomcat7.0.location}/bin/tomcat-juli.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/annotations-api.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/catalina-ant.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/catalina-ha.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/catalina-tribes.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/catalina.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/ecj-4.4.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/el-api.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/jasper-el.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/jasper.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/jsp-api.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/servlet-api.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/sqljdbc4.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-api.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-coyote.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-dbcp.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-i18n-es.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-i18n-fr.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-i18n-ja.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-jdbc.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat-util.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/tomcat7-websocket.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/w3c-dom.jar" />
+		<pathelement location="${Tomcat7.0.location}/lib/websocket-api.jar" />
+	</path>
+	<path id="library.classpath">
+		<pathelement location="bin" />
+		<pathelement location="../../lib/annotations-api.jar" />
+		<pathelement location="../../lib/catalina.jar" />
+		<pathelement location="../../lib/catalina-ant.jar" />
+		<pathelement location="../../lib/catalina-ha.jar" />
+		<pathelement location="../../lib/catalina-tribes.jar" />
+		<pathelement location="../../lib/ecj-4.4.jar" />
+		<pathelement location="../../lib/el-api.jar" />
+		<pathelement location="../../lib/jasper.jar" />
+		<pathelement location="../../lib/jasper-el.jar" />
+		<pathelement location="../../lib/jsp-api.jar" />
+		<pathelement location="../../lib/servlet-api.jar" />
+		<pathelement location="../../lib/sqljdbc4.jar" />
+		<pathelement location="../../lib/tomcat7-websocket.jar" />
+		<pathelement location="../../lib/tomcat-api.jar" />
+		<pathelement location="../../lib/tomcat-coyote.jar" />
+		<pathelement location="../../lib/tomcat-dbcp.jar" />
+		<pathelement location="../../lib/tomcat-i18n-es.jar" />
+		<pathelement location="../../lib/tomcat-i18n-fr.jar" />
+		<pathelement location="../../lib/tomcat-i18n-ja.jar" />
+		<pathelement location="../../lib/tomcat-jdbc.jar" />
+		<pathelement location="../../lib/tomcat-util.jar" />
+		<pathelement location="../../lib/w3c-dom.jar" />
+		<pathelement location="../../lib/websocket-api.jar" />
+		<pathelement location="../../lib/tomcat-juli.jar" />
+		<path refid="Tomcat7.0.classpath" />
+	</path>
+
+	<target name="init">
+		
+		<mkdir dir="${src.dir}" />
+		<mkdir dir="${dist.dir}" />
+
+	</target>
+
+	<target name="clean">
+		
+		<!--<delete dir="${src.dir}" /> -->
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target depends="clean" name="cleanall">
+		<ant antfile="build.xml" dir="${Tomcat7.0.location}" inheritAll="false"
+			target="clean" />
+	</target>
+
+
+	<!-- Compiles the java code (including the usage of library for JUnit -->
+
+	<target name="compile" depends="clean">
+		<javac srcdir="${src.dir}" destdir="${dist.dir}">
+		</javac>
+	</target>
+
+	<target depends="build-subprojects,build-project" name="build" />
+
+	<target name="build-subprojects">
+		<ant antfile="build.xml" dir="${Tomcat7.0.location}" inheritAll="false"
+			target="build-project">
+			<propertyset>
+				<propertyref name="build.compiler" />
+			</propertyset>
+		</ant>
+	</target>
+
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<!-- <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" 
+			target="${target}"> <src path="src"/> <classpath refid="library.classpath"/> 
+			</javac> -->
+		<!--自己改 destdir src path -->
+		<javac debug="true" debuglevel="${debuglevel}" destdir="WEB-INF/classes"
+			source="${source}" target="${target}">
+			<src path="src\mylibrary" />
+			<classpath refid="library.classpath" />
+		</javac>
+
+	</target>
+
+	<target
+		description="Build all projects which reference this project. Useful to propagate changes."
+		name="build-refprojects" />
+
+	<target description="copy Eclipse compiler jars to ant lib directory"
+		name="init-eclipse-compiler">
+		<copy todir="${ant.library.dir}">
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</copy>
+		<unzip dest="${ant.library.dir}">
+			<patternset includes="jdtCompilerAdapter.jar" />
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</unzip>
+	</target>
+
+	<!--下面不重要 不用看 -->
+
+	<target description="compile project with Eclipse compiler"
+		name="build-eclipse-compiler">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+		<antcall target="build" />
+	</target>
+
+	<target name="Tomcat.1">
+		<java classname="org.apache.catalina.startup.Tomcat$1"
+			failonerror="true" fork="yes">
+			<classpath refid="library.classpath" />
+		</java>
+	</target>
+	<target name="Bootstrap">
+		<java classname="org.apache.catalina.startup.Bootstrap"
+			failonerror="true" fork="yes">
+			<classpath refid="library.classpath" />
+		</java>
+	</target>
+</project>
