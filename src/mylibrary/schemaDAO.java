@@ -29,7 +29,7 @@ public class schemaDAO {
         {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");		
 			String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=library;"; 
-			conn = DriverManager.getConnection(connectionUrl,"sa","henry8290");
+			conn = DriverManager.getConnection(connectionUrl,"sa","turtlestu");
         }
 		catch (Exception e)
         {	

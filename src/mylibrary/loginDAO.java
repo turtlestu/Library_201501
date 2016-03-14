@@ -24,7 +24,7 @@ public class loginDAO {
 			//System.out.println("openDB password:"+password);
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");		
 			String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=library;";
-			conn = DriverManager.getConnection(connectionUrl,"sa","henry8290");
+			conn = DriverManager.getConnection(connectionUrl,"sa","turtlestu");
 			//sql="select Lastname,FirstName,Role,Account,Password from L_user where Account = '"+username+"' and Password = '"+password+"'";
 			//pstmt=conn.createStatement();
 								sql="select Lastname,FirstName,Role,UID,Email,Telephone,Account,Password from L_user" +
